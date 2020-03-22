@@ -1,0 +1,15 @@
+.visibleTd {
+  display: inline;
+}
+.disableTd {
+  display: none;
+}
+.unstyleButton {
+  border: none;
+
+  background: none;
+}
+th {
+  background-color: black;
+  color: white;
+}

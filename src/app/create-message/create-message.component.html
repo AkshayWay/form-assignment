@@ -1,0 +1,133 @@
+<h2>
+  Add new messgae
+</h2>
+<!-- <h3 *ngIf="isAdded">{{ confirmationString }}</h3> -->
+<form
+  id="formNewMessage"
+  name="formNewMessage"
+  #createMessageForm="ngForm"
+  (ngSubmit)="createNewMessage(createMessageForm.value)"
+  novalidate
+>
+  <div class="form-group">
+    <label for="name">Name</label
+    ><input
+      type="text"
+      name="name"
+      #name="ngModel"
+      id="name"
+      placeholder="Name"
+      ngModel
+      class="form-control"
+      required
+      [class.is-invalid]="name.invalid && name.touched"
+    />
+    <small class="text-danger" [class.d-none]="name.valid || name.untouched"
+      >Name is required</small
+    >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label
+    ><input
+      type="text"
+      name="email"
+      id="email"
+      class="form-control"
+      email
+      #email="ngModel"
+      placeholder="Email"
+      ngModel
+      required
+    />
+    <div *ngIf="email.errors && (email.valid || email.touched)">
+      <small class="text-danger" *ngIf="email.errors.required"
+        >Email is required</small
+      >
+      <small class="text-danger" *ngIf="email.errors.email"
+        >Email is invalid</small
+      >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input
+      type="tel"
+      #phone="ngModel"
+      class="form-control"
+      [class.is-invalid]="phone.invalid && phone.touched"
+      required
+      pattern="^\d{10}$"
+      name="phone"
+      id="phone"
+      placeholder="Phone number"
+      ngModel
+    />
+    <div *ngIf="phone.errors && (phone.valid || phone.touched)">
+      <small class="text-danger" *ngIf="phone.errors.required"
+        >Phone number is required</small
+      >
+      <small class="text-danger" *ngIf="phone.errors.pattern"
+        >Phone number must be 10 digits</small
+      >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="messageTextArea">Example textarea</label><label>Message :</label
+    ><textarea
+      type="text"
+      name="message"
+      id="message"
+      class="form-control"
+      #message1="ngModel"
+      required
+      rows="3"
+      [class.is-invalid]="message1.invalid && message1.touched"
+      placeholder="Message"
+      ngModel
+    ></textarea>
+    <small
+      class="text-danger"
+      [class.d-none]="message1.valid || message1.untouched"
+      >Message is required</small
+    >
+  </div>
+  <input
+    type="submit"
+    value="Add new message"
+    class="btn btn-primary"
+    [disabled]="createMessageForm.form.invalid"
+  />
+</form>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Message added successfully.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<!-- <a routerLink="/create"><i class="fa fa-plus"></i>Add message</a> -->
+<table class="table table-bordered">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Message</th>
+    <th>Action</th>
+  </tr>
+  <tbody>
+    <tr *ngFor="let dspData of displayData">
+      <td>{{ dspData.id }}</td>
+      <td>{{ dspData.name }}</td>
+      <td>{{ dspData.email }}</td>
+      <td>{{ dspData.phone }}</td>
+      <!-- <td>
+        <button (click)="toggleTd()"><i class="fa fa-eye"></i></button>
+        <label [className]="showTd ? 'visibleTd' : 'disableTd'">
+          {{ dspData.message }}
+        </label>
+      </td> -->
+      <td>
+        <!-- <button
+          *ngIf="viewMessage; else elseBlock"
+          (click)="toggleTd(dspData.id)"
+        >
+          <i class="fa fa-eye"></i>
+        </button>
+        <ng-template #elseBlock
+          ><button (click)="hideMessage()">
+            <i class="fa fa-eye-slash"></i></button
+        ></ng-template>
+        <label
+          [className]="selectedId == dspData.id ? 'disableTd' : 'visibleTd'"
+        > -->
+        <button class="unstyleButton" (click)="toggleTd(dspData.id)">
+          <i
+            [className]="
+              selectedId == dspData.id ? 'fa fa-eye-slash' : 'fa fa-eye'
+            "
+          ></i>
+        </button>
+        <label
+          [className]="selectedId == dspData.id ? 'visibleTd' : 'disableTd'"
+        >
+          {{ dspData.message }}
+        </label>
+      </td>
+      <td style=" text-align: center;">
+        <button class="unstyleButton" (click)="deleteMessage(dspData.id)">
+          <i class="fa fa-trash"></i>
+        </button>
+        <button class="unstyleButton" [routerLink]="['/update', dspData.id]">
+          <i class="fa fa-edit"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

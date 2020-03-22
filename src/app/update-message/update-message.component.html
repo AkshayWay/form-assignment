@@ -1,0 +1,108 @@
+<h2>
+  Update messgae
+</h2>
+<label *ngIf="!exist">
+  This messgae doesnt exist
+</label>
+<form
+  id="formNewMessage"
+  name="formNewMessage"
+  #updateMessageForm="ngForm"
+  (ngSubmit)="updateNewMessage(updateMessageForm.value)"
+  novalidate
+>
+  <!-- {{ updateMessageForm.form.valid }} -->
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      placeholder="Name"
+      class="form-control"
+      #name="ngModel"
+      required
+      [class.is-invalid]="name.invalid && name.touched"
+      ngModel
+      [(ngModel)]="data.name"
+    />
+    <small class="text-danger" [class.d-none]="name.valid || name.untouched"
+      >Name is required</small
+    >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label
+    ><input
+      type="text"
+      name="email"
+      id="email"
+      placeholder="Email"
+      ngModel
+      [(ngModel)]="data.email"
+      class="form-control"
+      email
+      #email="ngModel"
+      required
+    />
+    <div *ngIf="email.errors && (email.valid || email.touched)">
+      <small class="text-danger" *ngIf="email.errors.required"
+        >Email is required</small
+      >
+      <small class="text-danger" *ngIf="email.errors.email"
+        >Email is invalid</small
+      >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input
+      type="tel"
+      name="phone"
+      id="phone"
+      placeholder="Phone number"
+      #phone="ngModel"
+      class="form-control"
+      [class.is-invalid]="phone.invalid && phone.touched"
+      required
+      pattern="^\d{10}$"
+      ngModel
+      [(ngModel)]="data.phone"
+    />
+    <div *ngIf="phone.errors && (phone.valid || phone.touched)">
+      <small class="text-danger" *ngIf="phone.errors.required"
+        >Phone number is required</small
+      >
+      <small class="text-danger" *ngIf="phone.errors.pattern"
+        >Phone number must be 10 digits</small
+      >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="messageTextArea">Example textarea</label><label>Message :</label
+    ><textarea
+      type="text"
+      name="message"
+      id="message"
+      placeholder="Message"
+      ngModel
+      [(ngModel)]="data.message"
+      class="form-control"
+      #message1="ngModel"
+      required
+      rows="3"
+      [class.is-invalid]="message1.invalid && message1.touched"
+    ></textarea>
+    <small
+      class="text-danger"
+      [class.d-none]="message1.valid || message1.untouched"
+      >Message is required</small
+    >
+  </div>
+  <input
+    type="submit"
+    value="Update message"
+    class="btn btn-primary"
+    [disabled]="updateMessageForm.form.invalid"
+  />
+</form>
