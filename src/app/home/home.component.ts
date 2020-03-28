@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit {
   private headers = new HttpHeaders().set("Content-Type", "application/json");
   fetchData() {
     this.http
-      .get("http://localhost:5555/messages")
+      // .get("http://localhost:5555/messages")
+      .get("https://my-json-server.typicode.com/AkshayWay/jsonServer/messages/")
       //.subscribe((res: Response) => console.log(res.json()));
       .subscribe(data => {
         console.log("data", data), (this.displayData = data);
@@ -33,7 +34,10 @@ export class HomeComponent implements OnInit {
   deleteMessage(deleteId) {
     if (confirm("Are you sure?")) {
       // const url = `$("http://localhost:5555/messages"}/${deleteId}}`;
-      const url = "http://localhost:5555/messages/" + deleteId;
+      // const url = "http://localhost:5555/messages/" + deleteId;
+      const url =
+        "https://my-json-server.typicode.com/AkshayWay/jsonServer/messages/" +
+        deleteId;
       console.log(url);
       return this.http
         .delete(url, { headers: this.headers })

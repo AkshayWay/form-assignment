@@ -26,7 +26,11 @@ export class CreateMessageComponent implements OnInit {
     };
     console.log("messages", messages);
     this.http
-      .post("http://localhost:5555/messages/", this.messageObj)
+      // .post("http://localhost:5555/messages/", this.messageObj)
+      .post(
+        "https://my-json-server.typicode.com/AkshayWay/jsonServer/messages/",
+        this.messageObj
+      )
       .subscribe((res: Response) => {
         console.log(res);
         // this.isAdded = true;
